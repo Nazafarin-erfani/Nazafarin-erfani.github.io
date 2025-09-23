@@ -1,0 +1,297 @@
+/* Import Luxury Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap');
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background: #D5DECE;
+  color: #333;
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  animation: slideDown 1s ease;
+}
+
+.logo {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.blue-dot {
+  color: #0055ff;
+  margin-right: 5px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #555;
+  font-size: 0.9rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+  color: #0055ff;
+  transform: translateY(-2px);
+}
+
+/* Burger Menu */
+.burger {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Mobile Menu */
+nav.mobile {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  animation: fadeIn 0.5s ease;
+}
+
+nav.mobile a {
+  padding: 15px 25px;
+  margin: 0;
+  color: #333;
+  font-weight: 500;
+}
+
+nav.mobile a:hover {
+  background: #f4f4f4;
+  color: #0055ff;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: #D5DECE;
+  min-height: 100vh;
+  padding: 50px;
+  animation: fadeIn 1.2s ease-in-out;
+  gap: 40px;
+}
+
+/* Profile Card */
+.profile-card {
+  background: #fff;
+  padding: 50px 40px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  width: 400px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  animation: slideUp 1.2s ease forwards;
+}
+
+.profile-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+}
+
+.profile-card img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #D5DECE;
+  animation: pulse 3s infinite;
+}
+
+.profile-card h2 {
+  margin: 20px 0 10px;
+  font-size: 1.8rem;
+  font-family: "Playfair Display", serif;
+}
+
+.profile-card .role {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: #777;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.socials a {
+  margin: 0 12px;
+  color: #333;
+  font-size: 1.3rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.socials a:hover {
+  color: #0055ff;
+  transform: scale(1.25) rotate(5deg);
+}
+
+/* Intro Section */
+.intro {
+  max-width: 600px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.intro h1 {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  font-family: "Playfair Display", serif;
+  animation: fadeInUp 1.5s ease;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+  color: #444;
+  font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  animation: fadeInUp 2s ease;
+}
+
+.buttons {
+  margin-bottom: 25px;
+  animation: fadeInUp 2.5s ease;
+}
+
+.btn {
+  padding: 12px 28px;
+  margin-right: 10px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.4s ease;
+}
+
+.btn.primary {
+  background: #0055ff;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+.btn.primary:hover {
+  background: #003bb5;
+  transform: scale(1.08);
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 2px solid #333;
+  color: #333;
+  font-family: "Poppins", sans-serif;
+}
+
+.btn.secondary:hover {
+  background: #333;
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.description {
+  margin-top: 12px;
+  color: #444;
+  font-size: 1rem;
+  animation: fadeInUp 3s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Responsive Styles */
+@media (min-width: 1200px) {
+  .profile-card {
+    width: 500px;  /* Wider on large screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .profile-card {
+    margin-bottom: 30px;
+  }
+
+  .intro h1 {
+    font-size: 2.5rem;
+  }
+
+  .intro {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  nav.desktop {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  nav.mobile.active {
+    display: flex;
+    animation: slideDown 0.4s ease;
+  }
+}
