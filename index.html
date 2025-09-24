@@ -3,62 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Maya Nelson | Project Manager</title>
+  <title>Nazafarin Erfani</title>
   <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <!-- Header -->
-  <header>
-    <div class="logo">
-      <span class="blue-dot">■</span>
-      <span class="name"><strong>Nazafarin Erfani</strong> / Interior Designer - Graphic Designer</span>
+  <header class="site-header anim-fade-down delay-1">
+    <div class="brand">
+      <span class="dot">■</span>
+      <span class="brand-text"><strong>Nazafarin Erfani</strong> <span class="slash">|</span> Interior/Graphic Designer</span>
     </div>
-    <!-- Desktop Nav -->
-    <nav class="desktop">
-      <a href="about.html">ABOUT ME</a>
-      <a href="resume.html">RESUME</a>
-      <a href="projects.html">PROJECTS</a>
-      <a href="contact.html">CONTACT</a>
+
+    <nav class="main-nav">
+      <a href="projects.html">PROJECTS AND DESIGNS</a>
+      <a href="education.html">EDUCATION</a>
     </nav>
-    <!-- Burger for Mobile -->
-    <div class="burger"><i class="fas fa-bars"></i></div>
-    <!-- Mobile Nav -->
-    <nav class="mobile">
-      <a href="about.html">ABOUT ME</a>
-      <a href="resume.html">RESUME</a>
-      <a href="projects.html">PROJECTS</a>
-      <a href="contact.html">CONTACT</a>
-    </nav>
+
+    <button class="burger" aria-label="Menu"><i class="fas fa-bars"></i></button>
   </header>
 
-  <!-- Hero Section -->
-  <main class="hero">
-    <div class="profile-card">
-      <img src="profile.jpeg" alt="Maya Nelson" />
-      <h2>Nazafarin Erfani</h2>
-      <p class="role">Designer</p>
-      <div class="socials">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
+  <nav class="mobile-nav">
+    <a href="education.html">EDUCATION</a>
+    <a href="projects.html">PROJECTS AND DESIGNS</a>
+  </nav>
 
-    <div class="intro">
-      <h1>Hello</h1>
-      <p class="subtitle">Here's who I am & what I do</p>
-      <div class="buttons">
-        <button class="btn primary" id="resumeBtn">RESUME</button>
-        <button class="btn secondary" id="projectsBtn">PROJECTS</button>
-      </div>
-      <p class="description">
-        I am a recent B.Arch graduate passionate about creating functional, engaging spaces.
-        I work with hand drawing, 3D rendering, and graphic visualization, exploring how design, technology, and materials shape meaningful environments.
-      </p>
+  <!-- Hero -->
+  <main class="hero">
+    <div class="accent"></div>
+    <div class="wrap">
+      <article class="card anim-fade-up delay-2">
+        <div class="card-body">
+          <div class="avatar anim-float"><img src="profile.jpeg" alt="Nazafarin_Erfani"></div>
+          <h2 class="name">Nazafarin<br>Erfani</h2>
+          <div class="underline"></div>
+          <p class="role">Interior/Graphic Designer</p>
+        </div>
+        <div class="card-footer">
+          <div class="socials center">
+            <a href="https://www.linkedin.com/in/nazafarin-erfani-a0192a14b/?originalSubdomain=ir" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:nazafarinerfani@gmail.com" aria-label="Gmail"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <section class="intro anim-fade-up delay-3">
+        <h1 class="hello anim-slide-right delay-3b">Hello</h1>
+        <p class="tagline anim-fade-up delay-4">Here's who I am &amp; what I do</p>
+        <div class="cta anim-fade-up delay-5">
+          <button id="resumeBtn" class="btn btn-ghost ripple">RESUME</button>
+          <button id="portfolioBtn" class="btn btn-ghost ripple">PORTFOLIO</button>
+        </div>
+        <p class="lead anim-fade-up delay-6">
+          I am a recent B.Arch graduate passionate about creating functional, engaging spaces.
+          I work with hand drawing, 3D rendering, and graphic visualization, exploring how design, technology, and materials shape meaningful environments.
+        </p>
+      </section>
     </div>
   </main>
+
+  <!-- Inline JS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const resumeBtn = document.getElementById("resumeBtn");
+      const portfolioBtn = document.getElementById("portfolioBtn");
+
+      // Resume download
+      resumeBtn?.addEventListener("click", () => {
+        const link = document.createElement("a");
+        link.href = "resume.pdf";
+        link.download = "resume.pdf";
+        link.click();
+      });
+
+      // Portfolio download
+      portfolioBtn?.addEventListener("click", () => {
+        const link = document.createElement("a");
+        link.href = "Potfolio.pdf";
+        link.download = "Potfolio.pdf";
+        link.click();
+      });
+
+      // Burger menu toggle
+      const burger = document.querySelector(".burger");
+      const mobileNav = document.querySelector(".mobile-nav");
+
+      burger?.addEventListener("click", () => {
+        mobileNav.classList.toggle("show");
+
+        const icon = burger.querySelector("i");
+        icon.classList.toggle("fa-bars");
+        icon.classList.toggle("fa-times");
+      });
+    });
+  </script>
 </body>
 </html>
