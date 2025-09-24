@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Experience - Nazafarin Erfani</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --blue: #1560ff;
+      --beige: rgb(213, 222, 206);
+      --cardShadow: 0 14px 34px rgba(0,0,0,.16);
+    }
+
+    /* Experience Section */
+    .exp-section {
+      background: var(--beige);
+      padding: 80px 6vw;
+      text-align: center;
+    }
+    .exp-section h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.6rem;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+    .exp-section h1::after {
+      content: "";
+      display: block;
+      width: 60%;
+      height: 3px;
+      margin: 10px auto 0;
+      background: var(--blue);
+      transform: scaleX(0);
+      transition: transform 0.5s ease;
+    }
+    .exp-section h1.in-view::after {
+      transform: scaleX(1);
+    }
+    .exp-box {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: var(--cardShadow);
+      margin: 40px auto;
+      padding: 40px;
+      max-width: 900px;
+      opacity: 0;
+      transform: translateY(50px) scale(0.98);
+      transition: all 0.8s cubic-bezier(.22,.61,.36,1);
+      text-align: left;
+    }
+    .exp-box.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .exp-box h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--blue);
+    }
+    .exp-box h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 15px;
+      color: #444;
+    }
+    .exp-box ul {
+      margin-left: 20px;
+      list-style: disc;
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Skills Section */
+    .skills-section {
+      background: #fff;
+      padding: 80px 6vw;
+      text-align: center;
+    }
+    .skills-section h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.2rem;
+      margin-bottom: 50px;
+      position: relative;
+      display: inline-block;
+    }
+    .skills-section h2::after {
+      content: "";
+      display: block;
+      width: 70%;
+      height: 3px;
+      margin: 10px auto 0;
+      background: var(--blue);
+      transform: scaleX(0);
+      transition: transform 0.5s ease;
+    }
+    .skills-section h2.in-view::after {
+      transform: scaleX(1);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 40px;
+      justify-items: center;
+    }
+    .circle-skill {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.8s ease;
+    }
+    .circle-skill.in-view {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .circle-skill svg {
+      transform: rotate(-90deg);
+      width: 100%;
+      height: 100%;
+    }
+    .circle-skill circle {
+      fill: none;
+      stroke-width: 12;
+      stroke-linecap: round;
+    }
+    .circle-skill .bg {
+      stroke: #ddd;
+    }
+    .circle-skill .progress {
+      stroke: var(--blue);
+      stroke-dasharray: 440;
+      stroke-dashoffset: 440;
+      transition: stroke-dashoffset 1.5s ease;
+    }
+    .circle-skill.in-view .progress {
+      stroke-dashoffset: var(--offset);
+    }
+    .circle-skill .label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .circle-skill .label h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .circle-skill .label span {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    /* Back Button */
+    .back-btn {
+      display: block;
+      margin: 70px auto 0;
+      padding: 16px 36px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 32px;
+      border: 2px solid #333;
+      background: transparent;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .back-btn:hover {
+      background: #333;
+      color: #fff;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    }
+
+    /* Text Animations (same as education page) */
+    @keyframes fadeUp { from {opacity:0; transform: translateY(20px);} to {opacity:1; transform:none;} }
+    @keyframes slideRight { from {opacity:0; transform: translateX(-40px);} to {opacity:1; transform:none;} }
+    @keyframes floatY { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-6px);} }
+
+    .anim-fade-up { opacity:0; animation: fadeUp 0.8s ease forwards; }
+    .anim-slide-right { opacity:0; animation: slideRight 0.9s ease forwards; }
+    .anim-float { animation: floatY 4.8s ease-in-out infinite; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="brand">
+      <span class="dot">■</span>
+      <span class="brand-text"><strong>Nazafarin Erfani</strong> <span class="slash">|</span> Experience</span>
+    </div>
+    <nav class="main-nav">
+      <a href="projects.html">PROJECTS</a>
+      <a href="education.html">EDUCATION</a>
+      <a class="active" href="experience.html">EXPERIENCE</a>
+    </nav>
+    <button class="burger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </header>
+
+  <main>
+    <!-- Experience Section -->
+    <section class="exp-section">
+      <h1 id="exp-title" class="anim-slide-right">Employment History</h1>
+
+      <div class="exp-box anim-fade-up">
+        <h2>Remote Lighting Designer</h2>
+        <h3>Danoush Bargh Pars Nikan, Tehran | Jan 2025 — Jul 2025</h3>
+        <ul>
+          <li>Conducted detailed lighting calculations for residential and commercial projects.</li>
+          <li>Proposed fixture designs and layouts tailored to project requirements.</li>
+          <li>Collaborated with architects and contractors to integrate lighting solutions seamlessly.</li>
+        </ul>
+      </div>
+
+      <div class="exp-box anim-fade-up">
+        <h2>Sales & Content Designer</h2>
+        <h3>KamjaChoob, Tehran | Mar 2024 — Dec 2024</h3>
+        <ul>
+          <li>Produced promotional videos for a leading furniture company.</li>
+          <li>Designed catalogs, banners, and Instagram highlights to enhance brand visibility.</li>
+          <li>Responded to client inquiries and assisted online sales, improving customer satisfaction.</li>
+        </ul>
+      </div>
+
+      <div class="exp-box anim-fade-up">
+        <h2>Interior Design & Renovation Project</h2>
+        <h3>Sari | Jun 2023 — Sep 2023</h3>
+        <ul>
+          <li>Led renovation of a private residence from concept through implementation.</li>
+          <li>Designed custom furniture pieces and coordinated contractor fabrication.</li>
+          <li>Reconfigured bathroom layouts and selected tiles, finishes, and utilities.</li>
+        </ul>
+      </div>
+
+      <div class="exp-box anim-fade-up">
+        <h2>Freelance Illustrator & Printable Artist</h2>
+        <h3>Tehran | Jul 2021 — Apr 2022</h3>
+        <ul>
+          <li>Created printable artworks blending hand-drawn and digital techniques.</li>
+          <li>Oversaw branding, product presentation, and customer communication.</li>
+          <li>Produced mockups, prints, banners, and logos for commercial use.</li>
+        </ul>
+      </div>
+
+      <div class="exp-box anim-fade-up">
+        <h2>Social Media Admin</h2>
+        <h3>Artizan Gallery, Tehran | Jun 2019 — Mar 2020</h3>
+        <ul>
+          <li>Managed an Instagram page dedicated to wall art paintings.</li>
+          <li>Created visual posts, captions, and promotional content to boost online presence.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Combined Skills & Languages Section -->
+    <section class="skills-section">
+      <h2 id="skills-title" class="anim-slide-right">Skills & Languages</h2>
+      <div class="skills-grid">
+        <div class="circle-skill anim-fade-up" data-percent="85"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>AutoCAD</h3><span>85%</span></div></div>
+        <div class="circle-skill anim-fade-up" data-percent="70"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>SketchUp</h3><span>70%</span></div></div>
+        <div class="circle-skill anim-fade-up" data-percent="80"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>ArchiCAD</h3><span>80%</span></div></div>
+        <div class="circle-skill anim-fade-up" data-percent="60"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>3D Max</h3><span>60%</span></div></div>
+        <div class="circle-skill anim-fade-up" data-percent="65"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>Office</h3><span>65%</span></div></div>
+        <div class="circle-skill anim-fade-up" data-percent="80"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>Photoshop</h3><span>80%</span></div></div>
+        <div class="circle-skill anim-fade-up" data-percent="75"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>Illustrator</h3><span>75%</span></div></div>
+        <div class="circle-skill anim-fade-up" data-percent="100"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>Persian</h3><span>100%</span></div></div>
+        <div class="circle-skill anim-fade-up" data-percent="75"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>English</h3><span>75%</span></div></div>
+        <div class="circle-skill anim-fade-up" data-percent="40"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>German</h3><span>40%</span></div></div>
+      </div>
+
+      <!-- Back Button -->
+      <button onclick="window.location.href='index.html'" class="back-btn anim-fade-up">Back to Main Page</button>
+    </section>
+  </main>
+
+  <!-- JS for animations -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const expBoxes = document.querySelectorAll(".exp-box");
+      const circles = document.querySelectorAll(".circle-skill");
+      const titles = [document.getElementById("exp-title"), document.getElementById("skills-title")];
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+
+            if (entry.target.classList.contains("circle-skill")) {
+              const percent = entry.target.getAttribute("data-percent");
+              const progress = entry.target.querySelector(".progress");
+              const offset = 440 - (440 * percent) / 100;
+              progress.style.strokeDashoffset = offset;
+            }
+          }
+        });
+      }, { threshold: 0.3 });
+
+      [...expBoxes, ...circles, ...titles].forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
