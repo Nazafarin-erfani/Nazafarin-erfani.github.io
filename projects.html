@@ -2,12 +2,326 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Projects and Designs</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects - Nazafarin Erfani</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --blue:#1560ff;
+      --beige: rgb(213, 222, 206);
+      --cardShadow:0 14px 34px rgba(0,0,0,.16);
+    }
+
+    body {
+      margin:0;
+      font-family:"Poppins", sans-serif;
+      background: var(--beige);
+    }
+
+    /* Header (consistent with Education & Experience pages) */
+    .site-header {
+      position:sticky;top:0;z-index:100;
+      display:flex;justify-content:space-between;align-items:center;
+      height:72px;padding:18px 40px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.05);
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-size:1rem}
+    .dot{color:var(--blue);font-weight:900;font-size:1.05rem}
+    .brand-text{font-weight:600}
+    .brand .slash{margin:0 10px;color:#9c9c9c;font-weight:400}
+
+    .main-nav {
+      display:flex;
+      gap:26px;
+    }
+    .main-nav a {
+      color:#808080;
+      text-decoration:none;
+      font-size:.92rem;
+      font-weight:500;
+      transition:color .2s ease;
+    }
+    .main-nav a:hover,
+    .main-nav a.active {
+      color:var(--blue);
+    }
+
+    /* Burger button */
+    .burger {
+      display:none;
+      background:none;
+      border:0;
+      font-size:1.6rem;
+      cursor:pointer;
+      color:#222;
+    }
+
+    /* Mobile nav */
+    .mobile-nav {
+      display:none;
+      flex-direction:column;
+      background:#fff;
+      position:absolute;
+      top:72px;left:0;right:0;
+      padding:0 30px;
+      box-shadow:0 4px 18px rgba(0,0,0,.1);
+      z-index:99;
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      transition:max-height .4s ease, opacity .3s ease, padding .3s ease;
+    }
+    .mobile-nav a {
+      padding:14px 0;
+      border-bottom:1px solid #eee;
+      color:#333;
+      text-decoration:none;
+    }
+    .mobile-nav a:hover,
+    .mobile-nav a.active {color:var(--blue)}
+    .mobile-nav.show {
+      display:flex;
+      max-height:400px;
+      opacity:1;
+      padding:20px 30px;
+    }
+
+    @media (max-width:768px){
+      .main-nav{display:none}
+      .burger{display:block}
+    }
+
+    /* Projects Section */
+    .projects-section {
+      padding: 80px 6vw;
+      text-align: center;
+    }
+    .projects-section h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.6rem;
+      margin-bottom: 12px;
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(-30px);
+      transition: all 1s ease;
+    }
+    .projects-section h1.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .projects-subtitle {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 50px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1.2s ease;
+    }
+    .projects-subtitle.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Project Cards */
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: var(--cardShadow);
+      margin: 60px auto;
+      padding: 40px;
+      max-width: 1100px;
+      opacity: 0;
+      transform: scale(0.9) translateY(60px);
+      transition: all 1s cubic-bezier(.19,1,.22,1);
+    }
+    .project-card.in-view {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    .project-text { text-align: left; }
+    .project-text h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 12px;
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: all 0.8s ease;
+    }
+    .project-card.in-view .project-text h2 { opacity: 1; transform: translateX(0); }
+    .project-text h3 {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 16px;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.9s ease .2s;
+    }
+    .project-card.in-view .project-text h3 { opacity: 1; transform: translateX(0); }
+    .project-text p {
+      font-size: .96rem;
+      color: #555;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.9s ease .4s;
+    }
+    .project-card.in-view .project-text p { opacity: 1; transform: translateY(0); }
+    .project-image img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: var(--cardShadow);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 1s ease .3s;
+    }
+    .project-card.in-view .project-image img { opacity: 1; transform: scale(1); }
+
+    /* Alternate Layout */
+    .project-card:nth-child(even) .project-text { order: 2; }
+    .project-card:nth-child(even) .project-image { order: 1; }
+
+    /* Back Button */
+    .back-btn {
+      display: block;
+      margin: 80px auto 0;
+      padding: 16px 36px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 32px;
+      border: 2px solid #333;
+      background: transparent;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .back-btn:hover {
+      background: #333;
+      color: #fff;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    }
+
+    @media(max-width:900px){
+      .project-card { grid-template-columns: 1fr; }
+      .project-card:nth-child(even) .project-text,
+      .project-card:nth-child(even) .project-image { order: unset; }
+      .project-text { text-align:center; }
+    }
+  </style>
 </head>
-<body style="text-align:center; padding:60px;">
-  <h1>Projects and Designs</h1>
-  <p>Here you can showcase your design projects.</p>
-  <button onclick="window.location.href='index.html'" class="btn btn-ghost ripple">Back to Main Page</button>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="brand">
+      <span class="dot">■</span>
+      <span class="brand-text"><strong>Nazafarin Erfani</strong> <span class="slash">|</span> Projects</span>
+    </div>
+    <nav class="main-nav">
+      <a href="projects.html" class="active">PROJECTS</a>
+      <a href="education.html">EDUCATION</a>
+      <a href="experience.html">EXPERIENCE</a>
+    </nav>
+    <button class="burger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </header>
+
+  <!-- ✅ Mobile Nav -->
+  <nav class="mobile-nav">
+    <a href="projects.html" class="active">PROJECTS</a>
+    <a href="education.html">EDUCATION</a>
+    <a href="experience.html">EXPERIENCE</a>
+  </nav>
+
+  <main>
+    <!-- Projects Section -->
+    <section class="projects-section">
+      <h1 id="projects-title">Projects</h1>
+      <p class="projects-subtitle" id="projects-subtitle">
+        These are short introductions to my selected projects.  
+        You can explore the full works in my portfolio document.
+      </p>
+
+      <!-- Law Office -->
+      <div class="project-card">
+        <div class="project-text">
+          <h2>Law Office</h2>
+          <h3>Interior Office Design Course | Jun 2021</h3>
+          <p>
+            Designed an office for a lawyer and two assistants, emphasizing traditional drafting and constructed perspectives.  
+            Features include private offices, a conference room, and a client waiting area with TV, coffee bar, and bathrooms.
+          </p>
+        </div>
+        <div class="project-image">
+          <img src="p1.png" alt="Law Office Project">
+        </div>
+      </div>
+
+      <!-- Solo Complex -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="p2.png" alt="Solo Complex Project">
+        </div>
+        <div class="project-text">
+          <h2>Solo Complex</h2>
+          <h3>Bachelor of Architecture | Oct 2023</h3>
+          <p>
+            Designed a residential complex in Tehran exclusively for single residents.  
+            Includes 20 studio units, a gym, café, and rooftop winter balcony.  
+            Each unit features a rotating TV, work area, walk-in closet, and laundry closet for functionality and comfort.
+          </p>
+        </div>
+      </div>
+
+      <!-- Azad Dormitory -->
+      <div class="project-card">
+        <div class="project-text">
+          <h2>Azad Dormitory</h2>
+          <h3>Bachelor of Architecture | Oct 2024</h3>
+          <p>
+            A dormitory for 200 students near Azad University of Tehran.  
+            Features include common rooms, co-working spaces, kitchens, and balconies.  
+            Custom bunk beds with integrated storage and appliances were designed to maximize comfort and efficiency.
+          </p>
+        </div>
+        <div class="project-image">
+          <img src="p3.png" alt="Azad Dormitory Project">
+        </div>
+      </div>
+
+      <!-- Back Button -->
+      <button onclick="window.location.href='index.html'" class="back-btn">Back to Main Page</button>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add("in-view");
+          }
+        });
+      }, { threshold: 0.2 });
+
+      document.querySelectorAll(
+        ".project-card, #projects-title, #projects-subtitle"
+      ).forEach(el => observer.observe(el));
+
+      // ✅ Burger menu toggle
+      const burger = document.querySelector(".burger");
+      const mobileNav = document.querySelector(".mobile-nav");
+
+      burger?.addEventListener("click", () => {
+        mobileNav.classList.toggle("show");
+
+        const icon = burger.querySelector("i");
+        icon.classList.toggle("fa-bars");
+        icon.classList.toggle("fa-times");
+      });
+    });
+  </script>
 </body>
 </html>
