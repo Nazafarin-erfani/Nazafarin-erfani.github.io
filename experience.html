@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --blue: #1560ff;
+      --blue: #064420; /* ✅ dark green */
       --beige: rgb(213, 222, 206);
       --cardShadow: 0 14px 34px rgba(0,0,0,.16);
     }
@@ -178,7 +178,49 @@
       box-shadow: 0 8px 18px rgba(0,0,0,0.2);
     }
 
-    /* Text Animations (same as education page) */
+    /* Burger styles */
+    .burger {
+      display:none;
+      background:none;
+      border:0;
+      font-size:1.6rem;
+      cursor:pointer;
+      color:#222;
+    }
+    .mobile-nav {
+      display:none;
+      flex-direction:column;
+      background:#fff;
+      position:absolute;
+      top:72px;left:0;right:0;
+      padding:0 30px;
+      box-shadow:0 4px 18px rgba(0,0,0,.1);
+      z-index:99;
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      transition:max-height .4s ease, opacity .3s ease, padding .3s ease;
+    }
+    .mobile-nav a {
+      padding:14px 0;
+      border-bottom:1px solid #eee;
+      color:#333;
+      text-decoration:none;
+    }
+    .mobile-nav a:hover,
+    .mobile-nav a.active {color:var(--blue)}
+    .mobile-nav.show {
+      display:flex;
+      max-height:400px;
+      opacity:1;
+      padding:20px 30px;
+    }
+    @media(max-width:768px){
+      .main-nav{display:none}
+      .burger{display:block}
+    }
+
+    /* Text Animations */
     @keyframes fadeUp { from {opacity:0; transform: translateY(20px);} to {opacity:1; transform:none;} }
     @keyframes slideRight { from {opacity:0; transform: translateX(-40px);} to {opacity:1; transform:none;} }
     @keyframes floatY { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-6px);} }
@@ -203,6 +245,13 @@
     </nav>
     <button class="burger" aria-label="Menu"><i class="fas fa-bars"></i></button>
   </header>
+
+  <!-- ✅ Mobile Nav -->
+  <nav class="mobile-nav">
+    <a href="projects.html">PROJECTS</a>
+    <a href="education.html">EDUCATION</a>
+    <a class="active" href="experience.html">EXPERIENCE</a>
+  </nav>
 
   <main>
     <!-- Experience Section -->
@@ -266,13 +315,13 @@
         <div class="circle-skill anim-fade-up" data-percent="85"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>AutoCAD</h3><span>85%</span></div></div>
         <div class="circle-skill anim-fade-up" data-percent="70"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>SketchUp</h3><span>70%</span></div></div>
         <div class="circle-skill anim-fade-up" data-percent="80"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>ArchiCAD</h3><span>80%</span></div></div>
-        <div class="circle-skill anim-fade-up" data-percent="60"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>3D Max</h3><span>40%</span></div></div>
+        <div class="circle-skill anim-fade-up" data-percent="40"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>3D Max</h3><span>40%</span></div></div>
         <div class="circle-skill anim-fade-up" data-percent="65"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>Office</h3><span>65%</span></div></div>
         <div class="circle-skill anim-fade-up" data-percent="80"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>Photoshop</h3><span>80%</span></div></div>
         <div class="circle-skill anim-fade-up" data-percent="75"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>Illustrator</h3><span>75%</span></div></div>
         <div class="circle-skill anim-fade-up" data-percent="100"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>Persian</h3><span>100%</span></div></div>
         <div class="circle-skill anim-fade-up" data-percent="75"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>English</h3><span>75%</span></div></div>
-        <div class="circle-skill anim-fade-up" data-percent="40"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>German</h3><span>15%</span></div></div>
+        <div class="circle-skill anim-fade-up" data-percent="15"><svg><circle class="bg" cx="80" cy="80" r="70"></circle><circle class="progress" cx="80" cy="80" r="70"></circle></svg><div class="label"><h3>German</h3><span>15%</span></div></div>
       </div>
 
       <!-- Back Button -->
@@ -280,7 +329,7 @@
     </section>
   </main>
 
-  <!-- JS for animations -->
+  <!-- JS for animations + burger -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const expBoxes = document.querySelectorAll(".exp-box");
@@ -303,6 +352,18 @@
       }, { threshold: 0.3 });
 
       [...expBoxes, ...circles, ...titles].forEach(el => observer.observe(el));
+
+      // ✅ Burger toggle
+      const burger = document.querySelector(".burger");
+      const mobileNav = document.querySelector(".mobile-nav");
+      if (burger && mobileNav) {
+        burger.addEventListener("click", () => {
+          mobileNav.classList.toggle("show");
+          const icon = burger.querySelector("i");
+          icon.classList.toggle("fa-bars");
+          icon.classList.toggle("fa-times");
+        });
+      }
     });
   </script>
 </body>
